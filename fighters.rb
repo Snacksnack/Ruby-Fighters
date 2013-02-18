@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative 'os'     #'OS'     checks to find running platform, jruby incompatible
+require_relative 'os'     #'OS'     checks to find running platform
 require_relative 'clear'  #'CL'     clears console, requires 'os'
 require_relative 'color'  #'String' colors text, requires ansi color support
 require_relative 'config' #'CFG'    reads command line arguments

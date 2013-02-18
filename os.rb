@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'rbconfig'
 
-# Detects OS(, won't work for JRuby!)
+# Detects OS
 module OS
   def OS.windows?
     (RbConfig::CONFIG['host_os'] =~ /cygwin|mswin|mingw|bccwin|wince|emx/) != nil
