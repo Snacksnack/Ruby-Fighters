@@ -52,8 +52,7 @@ module CFG
             cf = argv[i+1]
             cb = "black"
           end
-          puts cf.c_index
-          puts cb.c_index
+          puts cf.c_index"rainbow"
           if (f = cf.c_index) == -1 or (b = cb.c_index) == -1
             raise "Incorrect argument '#{argv[i+1]}' for command '#{argv[i]}'"
           end
