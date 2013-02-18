@@ -34,7 +34,7 @@ module CFG
         raise "Unknown command #{argv[i]}"
       end
       
-      begin
+      #begin
         case argv[i].downcase
         when "--speed", "-s"
           if argv[i+1].match(/[^\d+\.\d+]/)
@@ -52,7 +52,6 @@ module CFG
             cf = argv[i+1]
             cb = "black"
           end
-          puts cf.c_index"rainbow"
           if (f = cf.c_index) == -1 or (b = cb.c_index) == -1
             raise "Incorrect argument '#{argv[i+1]}' for command '#{argv[i]}'"
           end
@@ -85,6 +84,7 @@ module CFG
                 Colors are #{"".colors}
                 Can be stuck together using '-' e.g. red-green
                 Warning: Bad for performance!
+                  (And rainbow extremely bad currently)
                 Default: no colors
   --speed / -s  Sets the speed of the fighting
                 Default: 0.075
@@ -97,10 +97,10 @@ module CFG
           exit
         end
        
-      rescue => msg
-        puts msg
-        exit
-      end
+      #rescue => msg
+      #  puts msg
+      #  exit
+      #end
       
     end
   end
