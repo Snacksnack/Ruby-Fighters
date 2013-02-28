@@ -1,13 +1,15 @@
 #!/usr/bin/env ruby
+require_relative 'color'
 
 # Parses command line arguments
-module CFG  
+module CFG
+  # Default settings
   @speed = 0.075
-  @color_f = -1
-  @color_b = -1
+  @color_f = -2
+  @color_b = -2
   @move = 35
   @time = false
-  
+  # Default getters
   def CFG.speed
     @speed
   end
@@ -25,7 +27,6 @@ module CFG
   end
   
   def CFG.parse argv
-    #Default values
     #Commands
     @commands = ["--speed","-s","--color","-c","--move","-m","--time","-t","--help","-h"]
     #Parse
@@ -44,19 +45,13 @@ module CFG
           
         when "--color", "-c"
           arg = argv[i+1].sub("white", "gray")
-          puts arg
-          if arg.include? "-"
-            cf = arg.split("-")[0]
-            cb = arg.split("-")[1]
-          else
-            cf = argv[i+1]
-            cb = "black"
-          end
-          if (f = cf.c_index) == -1 or (b = cb.c_index) == -1
+          cf = (arg.include? "-") ? arg.split("-")[0] : argv[i+1]
+          cb = (arg.include? "-") ? arg.split("-")[1] : "none"
+          if ((f = cf.c_index) == -2) or ((b = cb.c_index) == -2)
             raise "Incorrect argument '#{argv[i+1]}' for command '#{argv[i]}'"
           end
-          @color_f = 30 + f
-          @color_b = 40 + b
+          @color_f = (f == -1) ? 0 : 30 + f
+          @color_b = (b == -1) ? 0 : 40 + b
           
         when "--move", "-m"
           if argv[i+1].match(/[^\d+]/)
@@ -64,8 +59,8 @@ module CFG
           end
           @move = argv[i+1].to_i
           
-        when "--move", "-m"
-          if argv[i+1].match(/true|false/)
+        when "--time", "-t"
+          if !argv[i+1].match(/true|false/)
             raise "Incorrect argument '#{argv[i+1]}' for command '#{argv[i]}'"
           end
           @time = argv[i+1]
@@ -98,7 +93,7 @@ module CFG
         end
        
       #rescue => msg
-      #  puts msg
+      #  puts "#{msg}\nUse --help/-h to see correct commands and defaults."
       #  exit
       #end
       

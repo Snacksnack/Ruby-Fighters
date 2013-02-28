@@ -3,7 +3,7 @@ require_relative 'os'
 
 # Clear console
 module CL
-  def CL.clear
+  def CL.clear!
     if OS.windows?
       system 'cls'
     elsif OS.unix?
