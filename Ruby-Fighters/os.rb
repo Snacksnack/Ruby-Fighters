@@ -8,7 +8,7 @@ module OS
   end
 
   def OS.mac?
-   (RbConfig::CONFIG['host_os'] =~ /darwin/) != nil
+    (RbConfig::CONFIG['host_os'] =~ /darwin/) != nil
   end
 
   def OS.unix?
