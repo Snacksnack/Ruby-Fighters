@@ -5,8 +5,8 @@ require_relative 'color'
 module CFG
   # Default settings
   @speed = 0.075
-  @color_f = -2
-  @color_b = -2
+  @color_f = -1
+  @color_b = -1
   @move = 35
   @time = false
   # Default getters
@@ -35,7 +35,7 @@ module CFG
         raise "Unknown command #{argv[i]}"
       end
       
-      #begin
+      begin
         case argv[i].downcase
         when "--speed", "-s"
           if argv[i+1].match(/[^\d+\.\d+]/)
@@ -92,10 +92,10 @@ module CFG
           exit
         end
        
-      #rescue => msg
-      #  puts "#{msg}\nUse --help/-h to see correct commands and defaults."
-      #  exit
-      #end
+      rescue => msg
+        puts "#{msg}\nUse --help/-h to see correct commands and defaults."
+        exit
+      end
       
     end
   end
